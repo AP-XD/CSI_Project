@@ -23,7 +23,7 @@
          "value":"./csi/DOWNLOADS/",
          "required":false
       },
-      "APP_ID":{
+      "API_ID":{
          "description":"Get this value from my.telegram.org or @usetgxbot. Please do not steal",
          "value":""
       },
