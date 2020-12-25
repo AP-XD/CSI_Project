@@ -3,7 +3,6 @@ from . import utils
 from telethon.sessions import StringSession
 from telethon import TelegramClient
 from .dB.database import Var
-from csi import csi
 
 if Var.SESSION:
     csi = TelegramClient(StringSession(Var.SESSION), Var.API_ID, Var.API_HASH)
