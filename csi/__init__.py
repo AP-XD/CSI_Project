@@ -1,5 +1,4 @@
 import os, sys
-from . import utils
 from telethon.sessions import StringSession
 from telethon import TelegramClient
 from .dB.database import Var
@@ -19,7 +18,7 @@ if bool(ENV):
     if CONSOLE_LOGGER_VERBOSE:
         basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=DEBUG)
     else:
-        basicConfig(format="✘ %(asctime)s ✘ - ⫸ %(name)s ⫷ - ⛝ %(levelname)s ⛝ - ║ %(message)s ║", level=INFO)
+        basicConfig(format="%(asctime)s- ⫸ %(name)s ⫷ - %(levelname)s - ║ %(message)s ║", level=INFO)
     LOGS = getLogger(__name__)
     
     API_ID = int(os.environ.get("API_ID", 9))
