@@ -4,12 +4,12 @@ from . import *
 import logging
 from telethon import TelegramClient
 import telethon.utils
+logging.basicConfig(format="%(asctime)s - ⫸ %(name)s ⫷ - %(levelname)s - ║ %(message)s ║", level=INFO)
 
 def load_plugins(plugin_name):
     if plugin_name.startswith("__"):
         pass
     elif plugin_name.endswith("_"):
-        import csi.utils
         import importlib
         from pathlib import Path
         path = Path(f"csi/plugins/{plugin_name}.py")
@@ -19,13 +19,13 @@ def load_plugins(plugin_name):
         spec.loader.exec_module(mod)
         print("csi has (re)Imported " + plugin_name)
     else:
-        import csi.utils
         import importlib, sys
         from pathlib import Path                        
         path = Path(f"csi/plugins/{plugin_name}.py")
         name = "csi.plugins.{}".format(plugin_name)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
+        mod.logger = logging.getLogger(plugin_name)
         mod.csi = csi
         spec.loader.exec_module(mod)
         sys.modules["csi.plugins." + plugin_name] = mod
@@ -39,9 +39,7 @@ async def start(hehe):
 async def bot_info(BOT_TOKEN):
     asstinfo = await asst.get_me()
     bot_name = asstinfo.username
-
-logging.basicConfig(format="✘ %(asctime)s ✘ - ⫸ %(name)s ⫷ - ⛝ %(levelname)s ⛝ - ║ %(message)s ║", level=INFO)
-                    
+                  
                     
 csi.asst = None
 print("Initialising...")
