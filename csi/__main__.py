@@ -39,7 +39,7 @@ for name in files:
         patt = Path(a.name)
         plugin_name = patt.stem
         load_plugins(plugin_name.replace(".py", ""))
-    
+        print (f"CSI installed {plugin_name}")    
 print("csi has been deployed!!")
 
 if __name__ == "__main__":
