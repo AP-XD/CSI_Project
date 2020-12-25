@@ -1,5 +1,5 @@
 {
-  "name": "CSI UserBot",
+  "name": "CSI-UserBot",
   "description": "Project CSI",
   "logo": "https://telegra.ph/file/a0ddc3af49b43c492131e.jpg",
   "keywords": [
@@ -10,7 +10,7 @@
     "productivity"
   ],
   "repository": "https://github.com/APXD-git/CSI_Project",
-  "website": "https://apxd-git.github.io/ap/",
+  "website": "apxd-git.github.io/ap/",
   "success_url": "t.me/AP_XD",
   "stack": "container",
   "env": {
@@ -31,7 +31,7 @@
       "description": "Get this value from my.telegram.org or @usetgxbot. Please do not steal",
       "value": ""
     },
-    "STRING_SESSION": {
+    "SESSION": {
       "description": "Get this value by running python3 telesetup.py locally",
       "value": ""
     },
