@@ -18,8 +18,8 @@ if bool(ENV):
     CONSOLE_LOGGER_VERBOSE = False # sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
     if CONSOLE_LOGGER_VERBOSE:
         basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=DEBUG)
-#     else:
-#         basicConfig(format="✘ %(asctime)s ✘ - ⫸ %(name)s ⫷ - ⛝ %(levelname)s ⛝ - ║ %(message)s ║", level=INFO)
+    else:
+        basicConfig(format="✘ %(asctime)s ✘ - ⫸ %(name)s ⫷ - ⛝ %(levelname)s ⛝ - ║ %(message)s ║", level=INFO)
     LOGS = getLogger(__name__)
     
     API_ID = int(os.environ.get("API_ID", 9))
