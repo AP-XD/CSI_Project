@@ -3,6 +3,7 @@
 from telethon import events
 from csi import csi
 import asyncio
+import random
 @csi.on(events.NewMessage(pattern="^.sad", outgoing=True))
 async def _(hehe):
 
