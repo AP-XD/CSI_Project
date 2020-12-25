@@ -5,7 +5,7 @@ import logging
 from telethon import TelegramClient
 import telethon.utils
 logging.basicConfig(format="%(asctime)s - ⫸ %(name)s ⫷ - %(levelname)s - ║ %(message)s ║", level=INFO)
-
+logger = logging.getLogger()
 def load_plugins(plugin_name):
     if plugin_name.startswith("__"):
         pass
@@ -17,7 +17,7 @@ def load_plugins(plugin_name):
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
-        print("csi has (re)Imported " + plugin_name)
+        logger.info("csi has (re)Imported " + plugin_name)
     else:
         import importlib, sys
         from pathlib import Path                        
@@ -25,11 +25,10 @@ def load_plugins(plugin_name):
         name = "csi.plugins.{}".format(plugin_name)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
-        mod.logger = logging.getLogger(plugin_name)
         mod.csi = csi
         spec.loader.exec_module(mod)
         sys.modules["csi.plugins." + plugin_name] = mod
-        print("☣️CSI☣️ has Imported " + plugin_name)
+        logger.info("☣️CSI☣️ has Imported " + plugin_name)
         
 async def start(hehe):
     await csi.start(hehe)
@@ -42,16 +41,16 @@ async def bot_info(BOT_TOKEN):
                   
                     
 csi.asst = None
-print("Initialising...")
+logger.info("Initialising...")
 if BOT_TOKEN is not None:
-    print("Setting up CSI...")
+    logger.info("Setting up CSI...")
     csi.asst = TelegramClient("BOT_TOKEN",api_id=Var.API_ID,api_hash=Var.API_HASH).start(bot_token=Var.BOT_TOKEN)
-    print ("CSI loaded.")
-    print("Starting csi UserBot!")
+    logger.info("CSI loaded.")
+    logger.info("Starting csi UserBot!")
     csi.loop.run_until_complete(start(Var.BOT_TOKEN))
-    print("Done, startup completed")
+    logger.info("Done, startup completed")
 else:
-    print("Starting User Mode...")
+    logger.info("Starting User Mode...")
     csi.start()
 
 path = "csi/plugins/*.py"
@@ -62,7 +61,7 @@ for name in files:
         plugin_name = patt.stem
         load_plugins(plugin_name.replace(".py", ""))
         print (f"CSI installed {plugin_name}")    
-print("csi has been deployed!!")
+logger.info("csi has been deployed!!")
 
 if __name__ == "__main__":
     csi.run_until_disconnected()
